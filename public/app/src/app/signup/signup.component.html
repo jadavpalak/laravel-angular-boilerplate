@@ -1,0 +1,62 @@
+<div class="login-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+      <h1>SB Admin BS4 Angular7</h1>
+      <form role="form" [formGroup]="registerForm">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="model.name" class="form-control input-underline input-lg" placeholder="{{ 'Name' | translate }}" [formControl]="registerForm.controls['name']">
+            <small class="text-danger float-left" *ngIf="registerForm.controls['name'].hasError('required') && registerForm.controls['name'].touched" class="text-danger">
+              You must include a name.
+            </small>
+            <small class="text-danger float-left" *ngIf="registerForm.controls['name'].hasError('required') && registerForm.controls['name'].touched" class="text-danger">
+              Your name can not exceed 255 characters.
+            </small>
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="model.email" class="form-control input-underline input-lg" placeholder="{{ 'Email' | translate }}" [formControl]="registerForm.controls['email']">
+            <small class="text-danger" *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" class="text-danger">
+              You must include an email address.
+            </small>
+            <small class="text-danger float-left" *ngIf="(registerForm.controls['email'].hasError('pattern') || registerForm.controls['email'].errors) && !(registerForm.controls['email'].hasError('required')) && registerForm.controls['email'].touched" class="text-danger">
+              You must include a valid email address.
+            </small>
+          </div>
+          <div class="form-group">
+            <input type="password" [(ngModel)]="model.password" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}" [formControl]="registerForm.controls['password']" (keydown)="eventHandlerForPassword($event)">
+            <small class="text-danger" *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched" class="text-danger">
+              You must include password.
+            </small>
+            <small class="text-danger" *ngIf="registerForm.controls['password'].hasError('minLength') && registerForm.controls['password'].touched" class="text-danger">
+              Your  password must be greater than 7 characters long.
+            </small>
+            <small class="text-danger" *ngIf="registerForm.controls['password'].hasError('maxLength') && registerForm.controls['password'].touched" class="text-danger">
+              Your password can not exceed 30 characters.
+            </small>
+          </div>
+          <div class="form-group">
+            <input type="password" [(ngModel)]="model.password_confirmation" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}" [formControl]="registerForm.controls['confirm_password']" (keydown)="eventHandlerForPassword($event)">
+            <small class="text-danger" *ngIf="registerForm.controls['confirm_password'].hasError('required') && registerForm.controls['password'].touched" class="text-danger">
+              You must include password.
+            </small>
+            <small class="text-danger" *ngIf="registerForm.controls['confirm_password'].hasError('minLength') && registerForm.controls['confirm_password'].touched" class="text-danger">
+              Your  password must be greater than 7 characters long.
+            </small>
+            <small class="text-danger" *ngIf="registerForm.controls['confirm_password'].hasError('maxLength') && registerForm.controls['confirm_password'].touched" class="text-danger">
+              Your password can not exceed 30 characters.
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 text-right">
+            <button class="btn rounded-btn" [disabled]="!registerForm.valid"  (click)="onRegister()">{{ 'Register' | translate }}</button>
+          </div>
+          <div class="col-md-6 text-left">
+            <button class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
