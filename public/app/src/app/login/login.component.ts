@@ -34,38 +34,38 @@ export class LoginComponent implements OnInit {
     }
 
     onLoggedin() {
-      //  await this.loginService.login(this.model)
-      // .subscribe(
-      //   data => {
-      //     if (true == data[constants.FLAG] && null !== data[constants.FLAG]) {
-      //       localStorage.setItem('token', data['data'].token);
-      //       localStorage.setItem('user', JSON.stringify(data['data'].user));
-      //       this.toast.success(data[constants.MESSAGE]);
-      //       this.router.navigate(['/dashboard']);
-      //     }else{
-      //       this.toast.warning(data[constants.MESSAGE]);
-      //     }
-      //   },
-      //   error => {
-      //     this.toast.warning(constants.LOGIN_ERROR);
-      //   });
-      setTimeout(() => {
-        this._loginService.login(this.model.email,this.model.password)
-        .subscribe(
-          data => {
-            if (true == data[constants.FLAG] && null !== data[constants.FLAG]) {
-              localStorage.setItem('token', data['data'].token);
-              localStorage.setItem('user', JSON.stringify(data['data'].user));
-              this.toast.success(data[constants.MESSAGE]);
-              this.router.navigate(['/dashboard']);
-            }else{
-              this.toast.warning(data[constants.MESSAGE]);
-            }
-          },
-          error => {
-            this.toast.warning(constants.LOGIN_ERROR);
+       this._loginService.login(this.model.email,this.model.password)
+      .subscribe(
+        data => {
+          if (true == data[constants.FLAG] && null !== data[constants.FLAG]) {
+            localStorage.setItem('token', data['data'].token);
+            localStorage.setItem('user', JSON.stringify(data['data'].user));
+            this.toast.success(data[constants.MESSAGE]);
+            this.router.navigate(['/dashboard']);
+          }else{
+            this.toast.warning(data[constants.MESSAGE]);
           }
-        );
-      }, 1000);
+        },
+        error => {
+          this.toast.warning(constants.LOGIN_ERROR);
+        });
+      // setTimeout(() => {
+      //   this._loginService.login(this.model.email,this.model.password)
+      //   .subscribe(
+      //     data => {
+      //       if (true == data[constants.FLAG] && null !== data[constants.FLAG]) {
+      //         localStorage.setItem('token', data['data'].token);
+      //         localStorage.setItem('user', JSON.stringify(data['data'].user));
+      //         this.toast.success(data[constants.MESSAGE]);
+      //         this.router.navigate(['/dashboard']);
+      //       }else{
+      //         this.toast.warning(data[constants.MESSAGE]);
+      //       }
+      //     },
+      //     error => {
+      //       this.toast.warning(constants.LOGIN_ERROR);
+      //     }
+      //   );
+      // }, 1000);
     }
   }

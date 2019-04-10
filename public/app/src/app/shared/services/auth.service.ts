@@ -14,7 +14,6 @@ export class AuthService {
 
   public get currentUserValue(): any {
     var currentuser = localStorage.getItem('user');
-    console.log(currentuser);
     if(null!=currentuser && ''!=currentuser){
       currentuser = JSON.parse(currentuser);
     }
@@ -26,14 +25,7 @@ export class AuthService {
   }
 
   logout() {
-    // alert("loout service");
-    // let httpOptions:any ={
-    //   headers: new HttpHeaders({
-    //     'Content-Type':  'application/json',
-    //     'Authorization':'Bearer' +localStorage.getItem('token')
-    //   })
-    // };
-    // remove user from local storage to log user out
+    /* remove user from local storage to log user out */
     return this.http.post<any>( this.APIURL+`logout`,'')
     .pipe(map(res => res));
 

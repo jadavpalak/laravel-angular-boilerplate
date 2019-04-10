@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center">
     <div class="col-md-4">
       <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-      <h1>SB Admin BS4 Angular7</h1>
+      <h1>Laravel BS4 Angular7</h1>
       <form role="form" [formGroup]="loginForm">
         <div class="form-content">
           <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
           <div class="col-md-6 text-right">
-            <button class="btn rounded-btn" [disabled]="!loginForm.valid"  [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</button>
+            <button class="btn rounded-btn" [disabled]="!loginForm.valid" (click)="onLoggedin()">{{ 'Log in' | translate }}</button>
           </div>
           <div class="col-md-6 text-left">
             <button class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</button>

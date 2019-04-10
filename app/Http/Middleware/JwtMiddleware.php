@@ -21,20 +21,26 @@ class JwtMiddleware extends BaseMiddleware
   */
   public function handle($request, Closure $next)
   {
-    info("middleware");
     try {
       $user = JWTAuth::parseToken()->authenticate();
-      info($user);
+      if(is_null($user)|| empty($user)){
+        Log::warning('JwtMiddleware::handle::' .NO_USER_FOUND);
+        return Response()->json(ResponseManager::getError('', 999, NO_USER_FOUND));
+      }
     } catch (Exception $e) {
       if ($e instanceof TokenInvalidException){
-        return Response()->json(ResponseManager::getError('', 999, 'Token is Invalid'));
+        Log::warning('JwtMiddleware::handle::' .JWT_TOKEN_INVALID);
+        return Response()->json(ResponseManager::getError('', 999, JWT_TOKEN_INVALID));
       }else if ($e instanceof TokenExpiredException){
-        return Response()->json(ResponseManager::getError('', 999, 'Token is Expired'));
+        Log::warning('JwtMiddleware::handle::' .JWT_TOKEN_EXPIRED);
+        return Response()->json(ResponseManager::getError('', 999, JWT_TOKEN_EXPIRED));
       }
       else if ($e instanceof JWTException){
-        return Response()->json(ResponseManager::getError('', 999, 'Token is Expired'));
+        Log::warning('JwtMiddleware::handle::' .JWT_TOKEN_INVALID);
+        return Response()->json(ResponseManager::getError('', 999, JWT_TOKEN_INVALID));
       }else{
-        return Response()->json(ResponseManager::getError('', 999, 'Authorization Token not found.'));
+        Log::warning('JwtMiddleware::handle::' .JWT_TOKEN_NOT_FOUND);
+        return Response()->json(ResponseManager::getError('', 999, JWT_TOKEN_NOT_FOUND));
       }
     }
     return $next($request);

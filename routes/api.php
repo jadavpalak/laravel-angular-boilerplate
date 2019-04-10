@@ -18,9 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login','AuthController@login');
-Route::post('logout', 'AuthController@logout');
+// Route::post('logout', 'AuthController@logout');
 Route::post('/register','AuthController@register');
 Route::middleware('jwt.verify')->group(function(){
-  Route::get('logout', 'AuthController@logout');
+  Route::post('logout', 'AuthController@logout');
   Route::get('home', 'Controller@home');
 });

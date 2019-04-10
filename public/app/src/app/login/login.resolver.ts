@@ -21,7 +21,7 @@ export class LoginResolver implements Resolve<any> {
   resolve(): Observable<any> {
     let token = this.auth.currentUserToken;
     let user = this.auth.currentUserValue;
-    if (null != token && undefined != token && null != user && undefined != user) {
+    if (null != token && '' != token && null != user && '' != user) {
       this.router.navigate([constants.DASHBOARD]);
       return;
     } else {

@@ -23,7 +23,6 @@ export const constants = {
   FLOAT_NUMBAR: '[+-]?([0-9]*[.])?[0-9]+',
   PHONE_NO: '^[0-9]{1,10}$',
   ZIP_REGEX: /^[0-9]{5}$/,
-  WEB_SITE: /^((http|https|gopher|telnet|ftp)?(:\/\/))?(www\.)?[a-zA-Z0-9-_\.]+(\.[a-zA-Z0-9]{2,})([-a-zA-Z0-9:%_\+.~#?&\/\/=]*)$/,
   /*
   * END
   */
