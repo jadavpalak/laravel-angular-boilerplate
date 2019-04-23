@@ -5,6 +5,7 @@ use Closure;
 use JWTAuth;
 use Exception;
 use ResponseManager;
+use Log;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;

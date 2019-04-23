@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Headers} from '@angular/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   APIURL = environment.APIURL;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient ,  private cookieService: CookieService) {
   }
 
   public get currentUserValue(): any {
@@ -21,7 +22,13 @@ export class AuthService {
   }
 
   public get currentUserToken(): any {
-    return localStorage.getItem('token');
+    const cookieExists: boolean = this.cookieService.check('token');
+    if(cookieExists){
+      return this.cookieService.get('token');
+    }else{
+      return null;
+    }
+    
   }
 
   logout() {

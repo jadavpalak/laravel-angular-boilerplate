@@ -12,27 +12,30 @@ import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../shared/services/auth.service";
 import { constants } from "../app.constant";
 import { Location } from "@angular/common";
-
+import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class LogoutResolver implements Resolve<any> {
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private auth: AuthService,
-    private _location: Location
+    private _location: Location,
+    private cookieService: CookieService
   ) {}
   resolve(): Observable<any> {
     return this.auth.logout().pipe(
       map(
         res => {
           if (true == res[constants.FLAG] && null !== res[constants.FLAG]) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            // localStorage.removeItem("token");
+            // localStorage.removeItem("user");
+            this.deleteCookie();
             this.router.navigate([constants.LOGIN]);
           } else {
             if (res[constants.CODE] == 999) {
-              localStorage.removeItem("token");
-              localStorage.removeItem("user");
+              // localStorage.removeItem("token");
+              // localStorage.removeItem("user");
+              this.deleteCookie();
               this.router.navigate([constants.LOGIN]);
             }
           }
@@ -44,5 +47,9 @@ export class LogoutResolver implements Resolve<any> {
         }
       )
     );
+  }
+
+  deleteCookie(){
+    this.cookieService.deleteAll('/', 'localhost'); 
   }
 }
