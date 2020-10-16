@@ -1,16 +1,21 @@
+<div align="center">
+	<img src="https://repository-images.githubusercontent.com/180004237/f9711e00-3884-11ea-8201-6a2fe2629de5" width="400" alt="Laravel + Angular Logo"/>
+</div>
+
 # laravel-angular-boilerplate
-Quickstart for Laravel 5.8+ Angular 7.0 projects
+Quickstart for Laravel 5.8+ Angular 7.0 projects with JWT auth.
 
 # Includes:
 
 **Front-end:**
-- Angular boilerplate template
+- Angular CLI boilerplate template
 - JWT authentication service
-- Login/Register components
+- Login/Register components (Angular Material)
 
 **Back-end:**
 - Boilerplate file
 - JWT authentication
+- composer vendor files
 
 # Installation:
 ``` git clone https://github.com/jadavpalak/laravel-angular-boilerplate.git  ```
